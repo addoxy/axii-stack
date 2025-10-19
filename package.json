@@ -7,7 +7,12 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "prepare": "husky"
+    "prepare": "husky",
+    "db:start": "docker compose up -d",
+    "db:stop": "docker compose stop",
+    "db:restart": "docker compose restart",
+    "db:logs": "docker compose logs -f postgres",
+    "db:clean": "docker compose down -v"
   },
   "dependencies": {
     "@t3-oss/env-nextjs": "^0.13.8",
