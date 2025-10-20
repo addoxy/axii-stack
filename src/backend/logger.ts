@@ -30,20 +30,20 @@ const colors = {
   id: (str: string) => `\x1b[90m${str}\x1b[0m`, // gray
 };
 
-export const logger = createMiddleware(async (c, next) => {
-  const requestId = uuidv4();
-  const start = Date.now();
-  c.set('requestId', requestId);
+export const logger = () =>
+  createMiddleware(async (c, next) => {
+    const start = Date.now();
+    const requestId = c.get('requestId') || uuidv4();
 
-  const method = colors.method(c.req.method);
-  const path = colors.path(c.req.path);
-  const id = colors.id(`[${requestId}]`);
+    const method = colors.method(c.req.method);
+    const path = colors.path(c.req.path);
+    const id = colors.id(`[${requestId}]`);
 
-  await next();
+    await next();
 
-  const duration = Date.now() - start;
-  const status = colors.status(c.res.status.toString());
-  const time = colors.duration(`${duration}ms`);
+    const duration = Date.now() - start;
+    const status = colors.status(c.res.status.toString());
+    const time = colors.duration(`${duration}ms`);
 
-  pinoLogger.info(`${id} ${method} ${path} ${status} - ${time}`);
-});
+    pinoLogger.info(`${id} ${method} ${path} ${status} - ${time}`);
+  });
