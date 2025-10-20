@@ -2,7 +2,15 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   serverExternalPackages: ['pino'],
-  logging: false,
+  logging: {
+    fetches: {
+      fullUrl: true,
+      hmrRefreshes: true,
+    },
+    incomingRequests: {
+      ignore: [/^\/api\/.*/],
+    },
+  },
 };
 
 export default nextConfig;
