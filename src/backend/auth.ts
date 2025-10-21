@@ -1,4 +1,5 @@
-import { env } from '@/config/env/server';
+import { env as clientEnv } from '@/config/env/client';
+import { env as serverEnv } from '@/config/env/server';
 import { PrismaClient } from '@prisma/client';
 import { betterAuth } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
@@ -6,16 +7,16 @@ import { prismaAdapter } from 'better-auth/adapters/prisma';
 const prisma = new PrismaClient();
 
 export const auth = betterAuth({
-  baseURL: env.API_URL,
+  baseURL: clientEnv.NEXT_PUBLIC_API_URL,
   basePath: '/api/auth',
-  secret: env.BETTER_AUTH_SECRET,
+  secret: serverEnv.BETTER_AUTH_SECRET,
   database: prismaAdapter(prisma, {
     provider: 'postgresql',
   }),
   socialProviders: {
     google: {
-      clientId: env.GOOGLE_CLIENT_ID,
-      clientSecret: env.GOOGLE_CLIENT_SECRET,
+      clientId: serverEnv.GOOGLE_CLIENT_ID,
+      clientSecret: serverEnv.GOOGLE_CLIENT_SECRET,
     },
   },
 });

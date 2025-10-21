@@ -1,79 +1,76 @@
 'use client';
 
-import { signOut, useSession } from '@/lib/auth';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { api } from '@/backend/rpc';
+import { useSession } from '@/lib/auth';
+import { useQuery } from '@tanstack/react-query';
 
 export default function Home() {
-  const router = useRouter();
   const { data: session, isPending } = useSession();
 
-  useEffect(() => {
-    if (!isPending && !session) {
-      router.push('/sign-in');
-    }
-  }, [session, isPending, router]);
-
-  const handleSignOut = async () => {
-    await signOut();
-    router.push('/sign-in');
-  };
+  const { data: users, status } = useQuery({
+    queryKey: ['users'],
+    queryFn: async () => {
+      const response = await api.users.all.$get();
+      const data = await response.json();
+      return data;
+    },
+  });
 
   if (isPending) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <div className="text-lg">Loading...</div>
+        <p className="text-gray-500">Loading session...</p>
       </div>
     );
-  }
-
-  if (!session) {
-    return null;
   }
 
   return (
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="mx-auto max-w-4xl">
-        <div className="rounded-lg bg-white p-8 shadow-lg">
-          <div className="flex items-center justify-between border-b pb-4">
+        {session ? (
+          <div>
             <h1 className="text-3xl font-bold text-gray-900">
-              Welcome to Axii Stack
+              Welcome back, {session.user?.name || 'User'}!
             </h1>
-            <button
-              onClick={handleSignOut}
-              className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:outline-none"
-            >
-              Sign Out
-            </button>
-          </div>
+            <p className="mt-4 text-gray-700">Here is the list of all users:</p>
 
-          <div className="mt-6 space-y-4">
-            <div className="flex items-center gap-4">
-              {session.user.image && (
-                <img
-                  src={session.user.image}
-                  alt={session.user.name || 'User'}
-                  className="h-16 w-16 rounded-full"
-                />
-              )}
-              <div>
-                <h2 className="text-xl font-semibold text-gray-900">
-                  {session.user.name}
-                </h2>
-                <p className="text-gray-600">{session.user.email}</p>
-              </div>
-            </div>
-
-            <div className="mt-6 rounded-lg bg-gray-50 p-4">
-              <h3 className="mb-2 font-semibold text-gray-900">
-                Session Information
-              </h3>
-              <pre className="overflow-auto text-sm text-gray-700">
-                {JSON.stringify(session, null, 2)}
-              </pre>
-            </div>
+            {status === 'pending' && (
+              <p className="mt-2 text-gray-500">Loading users...</p>
+            )}
+            {status === 'error' && (
+              <p className="mt-2 text-red-500">Failed to load users.</p>
+            )}
+            {status === 'success' && (
+              <ul className="mt-4 space-y-2">
+                {users.data?.map((user) => (
+                  <li key={user.id} className="rounded-lg bg-white p-4 shadow">
+                    <p className="font-medium text-gray-900">
+                      {user.name || 'No Name'}
+                    </p>
+                    <p className="text-sm text-gray-600">{user.email}</p>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
-        </div>
+        ) : (
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">
+              Welcome to Axii Stack!
+            </h1>
+            <p className="mt-4 text-gray-700">
+              Please sign in to view user information.
+              <button
+                className="ml-2 rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+                onClick={() => {
+                  window.location.href = '/sign-in';
+                }}
+              >
+                Sign In
+              </button>
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

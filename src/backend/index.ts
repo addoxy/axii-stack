@@ -6,6 +6,7 @@ import { secureHeaders } from 'hono/secure-headers';
 import { handle } from 'hono/vercel';
 import { auth } from './auth';
 import { logger } from './logger';
+import userRouter from './routers/users';
 
 const app = new Hono().basePath('/api').use(
   '*',
@@ -22,11 +23,7 @@ const router = app
   .on(['POST', 'GET'], '/auth/*', (c) => {
     return auth.handler(c.req.raw);
   })
-  .get('/', (c) => {
-    return c.json({
-      message: 'Hello from Axii Stack API!',
-    });
-  });
+  .route('/users', userRouter);
 
 export type AppType = typeof router;
 export const httpHandler = handle(router);
