@@ -2,6 +2,7 @@
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from 'next-themes';
+import { Toaster } from './ui/sonner';
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ export const Providers = ({ children }: ProviderProps) => {
       >
         {children}
       </ThemeProvider>
+      <Toaster />
     </QueryClientProvider>
   );
 };

@@ -1,4 +1,5 @@
 import { Providers } from '@/components/providers';
+import { env } from '@/config/env/server';
 import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 import type { Metadata } from 'next';
@@ -12,7 +13,7 @@ const fontSans = Inter({
 export const metadata: Metadata = {
   title: 'Axii Stack',
   description:
-    'A modern full-stack framework powered by Next.js, Hono, Drizzle and other cool technologies.',
+    'A modern full-stack and production-ready framework powered by Next.js, Hono, Prisma and other cool technologies.',
 };
 
 export default function RootLayout({
@@ -25,7 +26,7 @@ export default function RootLayout({
       <body
         className={cn(
           fontSans.variable,
-          process.env.NODE_ENV === 'development' && 'debug-screens',
+          env.NODE_ENV === 'development' && 'debug-screens',
           'antialiased'
         )}
       >

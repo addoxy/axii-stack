@@ -10,6 +10,7 @@ import { useState } from 'react';
 const fontCursive = Edu_NSW_ACT_Cursive({
   variable: '--font-cursive',
   subsets: ['latin'],
+  fallback: ['sans-serif'],
 });
 
 export default function Home() {
