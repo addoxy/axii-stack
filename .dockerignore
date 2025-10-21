@@ -9,6 +9,9 @@ pnpm-debug.log*
 out
 build
 
+# Typescript
+*.tsbuildinfo
+
 # Environment variables
 .env*
 !.env.example
