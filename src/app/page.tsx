@@ -52,27 +52,7 @@ export default function Home() {
   return (
     <div className="mx-auto min-h-screen max-w-4xl px-6 py-12 md:px-12 md:py-20">
       {/* Header */}
-      <header className="flex items-start justify-between">
-        <div>
-          <h1 className="text-foreground text-2xl font-light tracking-tight">
-            Axii Stack
-          </h1>
-          <div className="text-muted-foreground mt-1 font-mono text-sm">
-            v1.0.0
-          </div>
-        </div>
-        <div className="flex items-center gap-4">
-          <a
-            href="https://github.com/addoxy/axii-stack"
-            target="_blank"
-            className="border-border hover:border-foreground hover:text-foreground text-muted-foreground inline-flex items-center gap-1.5 border-b pb-0.5 text-sm transition-colors"
-          >
-            <Github className="h-3.5 w-3.5" />
-            <span>GitHub</span>
-          </a>
-          <ThemeToggler />
-        </div>
-      </header>
+      <AxiiStackHeader />
 
       {/* Main Content */}
       <main className="mt-20 md:mt-32">
@@ -137,7 +117,7 @@ export default function Home() {
           </div>
 
           {/* Next Step */}
-          <div className="border-l-2 pl-6 md:pl-8">
+          <div className="border-l pl-6 md:pl-8">
             <p className="text-muted-foreground flex items-center gap-2 text-sm">
               <ArrowRight className="h-4 w-4" />
               <span>Open http://localhost:3000 to see your application</span>
@@ -153,3 +133,29 @@ export default function Home() {
     </div>
   );
 }
+
+export const AxiiStackHeader = () => {
+  return (
+    <header className="flex items-start justify-between">
+      <div>
+        <h1 className="text-foreground text-2xl font-light tracking-tight">
+          Axii Stack
+        </h1>
+        <div className="text-muted-foreground mt-1 font-mono text-sm">
+          v1.0.0
+        </div>
+      </div>
+      <div className="flex items-center gap-4">
+        <a
+          href="https://github.com/addoxy/axii-stack"
+          target="_blank"
+          className="border-border hover:border-foreground hover:text-foreground text-muted-foreground inline-flex items-center gap-1.5 border-b pb-0.5 text-sm transition-colors"
+        >
+          <Github className="h-3.5 w-3.5" />
+          <span>GitHub</span>
+        </a>
+        <ThemeToggler />
+      </div>
+    </header>
+  );
+};

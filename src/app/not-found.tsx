@@ -1,8 +1,8 @@
 'use client';
 
-import { ThemeToggler } from '@/components/ui/theme-toggler';
-import { Github, Home, Search } from 'lucide-react';
+import { Home, Search } from 'lucide-react';
 import Link from 'next/link';
+import { AxiiStackHeader } from './page';
 
 export default function NotFound() {
   const commonRoutes = [
@@ -13,32 +13,12 @@ export default function NotFound() {
   return (
     <div className="mx-auto min-h-screen max-w-4xl px-6 py-12 md:px-12 md:py-20">
       {/* Header */}
-      <header className="flex items-start justify-between">
-        <div>
-          <h1 className="text-foreground text-2xl font-light tracking-tight">
-            Axii Stack
-          </h1>
-          <div className="text-muted-foreground mt-1 font-mono text-sm">
-            v1.0.0
-          </div>
-        </div>
-        <div className="flex items-center gap-4">
-          <a
-            href="https://github.com/addoxy/axii-stack"
-            target="_blank"
-            className="border-border hover:border-foreground hover:text-foreground text-muted-foreground inline-flex items-center gap-1.5 border-b pb-0.5 text-sm transition-colors"
-          >
-            <Github className="h-3.5 w-3.5" />
-            <span>GitHub</span>
-          </a>
-          <ThemeToggler />
-        </div>
-      </header>
+      <AxiiStackHeader />
 
       {/* Main Content */}
       <main className="mt-20 md:mt-32">
         {/* 404 Message */}
-        <div className="border-border border-l-2 pl-6 md:pl-8">
+        <div className="border-border border-l pl-6 md:pl-8">
           <div className="flex items-center gap-3">
             <Search className="text-muted-foreground h-5 w-5" />
             <h2 className="text-foreground text-xl font-medium md:text-2xl">
