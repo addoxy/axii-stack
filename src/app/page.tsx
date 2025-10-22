@@ -1,158 +1,155 @@
 'use client';
 
-import { Button, buttonVariants } from '@/components/ui/button';
 import { ThemeToggler } from '@/components/ui/theme-toggler';
-import { cn } from '@/lib/utils';
-import { GithubIcon } from 'lucide-react';
-import { Edu_NSW_ACT_Cursive } from 'next/font/google';
+import { ArrowRight, Github } from 'lucide-react';
 import { useState } from 'react';
 
-const fontCursive = Edu_NSW_ACT_Cursive({
-  variable: '--font-cursive',
-  subsets: ['latin'],
-  fallback: ['sans-serif'],
-});
-
 export default function Home() {
-  const [copied, setCopied] = useState<number | null>(null);
+  const [copied, setCopied] = useState<string | null>(null);
 
-  const copyToClipboard = async (text: string, index: number) => {
+  const copyToClipboard = async (text: string, id: string) => {
     await navigator.clipboard.writeText(text);
-    setCopied(index);
+    setCopied(id);
     setTimeout(() => setCopied(null), 2000);
   };
 
-  const features = [
-    {
-      title: 'Next.js 15',
-      description: 'App Router with React 19 support',
-    },
-    {
-      title: 'Authentication',
-      description: 'Better Auth with Google OAuth integration',
-    },
-    {
-      title: 'Database',
-      description: 'Prisma ORM with PostgreSQL database',
-    },
-    {
-      title: 'API Layer',
-      description: 'Hono RPC with type-safe endpoints',
-    },
-    {
-      title: 'Type-Safety',
-      description: 'Zod schemas + validated environment variables',
-    },
-    {
-      title: 'Styling',
-      description: 'Tailwind v4 with shadcn/ui components',
-    },
-    {
-      title: 'Data Fetching',
-      description: 'TanStack Query for server state management',
-    },
-    {
-      title: 'Developer Experience',
-      description: 'Pino structured logging with type-safe config',
-    },
-    {
-      title: 'Production Ready',
-      description: 'Security headers with CORS and Docker support',
-    },
+  const stack = [
+    { name: 'Next.js 15', detail: 'React 19 with Turbopack' },
+    { name: 'Better Auth', detail: 'Full-featured auth library' },
+    { name: 'Prisma', detail: 'Type-safe PostgreSQL ORM' },
+    { name: 'Hono', detail: 'Lightweight type-safe API' },
+    { name: 'TanStack Query', detail: 'Async state management' },
+    { name: 'Tailwind v4 + shadcn', detail: 'Radix with dark mode' },
+    { name: 'Zod + T3 Env', detail: 'Runtime validation library' },
+    { name: 'Pino', detail: 'Structured logging system' },
+    { name: 'ESLint + Prettier', detail: 'Linting and formatting' },
+    { name: 'Husky + lint-staged', detail: 'Pre-commit quality checks' },
   ];
 
   const commands = [
     {
-      title: '1. Clone and install',
-      code: 'git clone https://github.com/addoxy/axii-stack.git\ncd axii-stack\npnpm install',
+      id: 'clone',
+      label: 'Clone repository',
+      command: 'git clone https://github.com/addoxy/axii-stack.git',
     },
     {
-      title: '2. Setup environment',
-      code: 'cp .env.example .env.local',
+      id: 'install',
+      label: 'Install dependencies',
+      command: 'cd axii-stack && pnpm install',
     },
     {
-      title: '3. Start development',
-      code: 'pnpm db:start && pnpm db:migrate\npnpm dev',
+      id: 'env',
+      label: 'Configure environment',
+      command: 'cp .env.example .env.local',
+    },
+    {
+      id: 'dev',
+      label: 'Start development',
+      command: 'pnpm db:start && pnpm db:migrate && pnpm dev',
     },
   ];
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center px-6">
-      <main className="w-full max-w-3xl space-y-16 py-20">
-        {/* Hero */}
-        <div className="space-y-6 text-center">
-          <h1
-            className={cn(
-              'text-foreground text-4xl font-medium tracking-wider sm:text-5xl',
-              fontCursive.className
-            )}
-          >
+    <div className="mx-auto min-h-screen max-w-4xl px-6 py-12 md:px-12 md:py-20">
+      {/* Header */}
+      <header className="flex items-start justify-between">
+        <div>
+          <h1 className="text-foreground text-2xl font-light tracking-tight">
             Axii Stack
           </h1>
-          <p className="text-muted-foreground mx-auto max-w-sm">
-            Production-ready Next.js starter with auth, database, and type-safe
-            APIs.
-          </p>
-          <div className="flex items-center justify-center gap-2">
-            <a
-              href="https://github.com/addoxy/axii-stack"
-              target="_blank"
-              className={cn(buttonVariants())}
-            >
-              <GithubIcon />
-              GitHub
-            </a>
-            <ThemeToggler />
+          <div className="text-muted-foreground mt-1 font-mono text-sm">
+            v1.0.0
           </div>
         </div>
+        <div className="flex items-center gap-4">
+          <a
+            href="https://github.com/addoxy/axii-stack"
+            target="_blank"
+            className="border-border hover:border-foreground hover:text-foreground text-muted-foreground inline-flex items-center gap-1.5 border-b pb-0.5 text-sm transition-colors"
+          >
+            <Github className="h-3.5 w-3.5" />
+            <span>GitHub</span>
+          </a>
+          <ThemeToggler />
+        </div>
+      </header>
 
-        {/* Features */}
-        <div className="grid gap-3 md:grid-cols-3">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="group border-border bg-card hover:bg-muted space-y-2 rounded-lg border px-6 py-5 transition-colors"
-            >
-              <h3 className="text-card-foreground group-hover:text-foreground font-medium">
-                {feature.title}
-              </h3>
-              <p className="text-muted-foreground text-sm">
-                {feature.description}
-              </p>
-            </div>
-          ))}
+      {/* Main Content */}
+      <main className="mt-20 md:mt-32">
+        {/* Intro */}
+        <div className="border-border border-l pl-6 md:pl-8">
+          <p className="text-foreground max-w-2xl text-lg leading-relaxed md:text-xl">
+            A production-ready Next.js starter. Built with modern tools,
+            configured for type-safety, and designed to deploy immediately.
+          </p>
         </div>
 
-        {/* Quick Start */}
-        <div className="space-y-4">
-          <h2 className="text-foreground text-center text-xl font-semibold">
-            Quick Start
-          </h2>
-          <div className="border-border bg-card space-y-3 rounded-lg border p-6">
-            {commands.map((cmd, index) => (
-              <div key={index} className="space-y-2">
-                <p className="text-card-foreground text-sm font-medium">
-                  {cmd.title}
-                </p>
-                <div className="group relative">
-                  <pre className="bg-muted text-muted-foreground overflow-x-auto rounded-md p-3 pr-12 text-xs">
-                    {cmd.code}
-                  </pre>
-                  <Button
-                    onClick={() => copyToClipboard(cmd.code, index)}
-                    className="absolute top-1.5 right-1.5 text-xs opacity-0 transition-opacity group-hover:opacity-100"
-                    size="xs"
-                    variant="outline"
-                    aria-label="Copy command"
-                  >
-                    {copied === index ? 'Copied!' : 'Copy'}
-                  </Button>
+        {/* Stack List */}
+        <div className="mt-16 space-y-0 md:mt-24">
+          <div className="border-border border-t">
+            {stack.map((item, index) => (
+              <div
+                key={index}
+                className="border-border group hover:bg-muted/30 flex items-baseline justify-between border-b px-4 py-4 transition-colors md:px-6 md:py-5"
+              >
+                <div className="flex items-baseline gap-3 md:gap-4">
+                  <span className="text-muted-foreground font-mono text-xs">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span className="text-foreground font-medium">
+                    {item.name}
+                  </span>
                 </div>
+                <span className="text-muted-foreground text-sm">
+                  {item.detail}
+                </span>
               </div>
             ))}
           </div>
         </div>
+
+        {/* Getting Started */}
+        <div className="mt-20 space-y-8 md:mt-32">
+          <h2 className="text-foreground border-border border-l pl-6 text-lg font-medium md:pl-8">
+            Getting Started
+          </h2>
+
+          <div className="space-y-6">
+            {commands.map((cmd) => (
+              <div key={cmd.id} className="group">
+                <div className="text-muted-foreground mb-2 font-mono text-xs">
+                  {cmd.label}
+                </div>
+                <div className="border-border bg-card relative border">
+                  <code className="text-foreground block overflow-x-auto px-4 py-3 font-mono text-sm">
+                    {cmd.command}
+                  </code>
+                  <button
+                    onClick={() => copyToClipboard(cmd.command, cmd.id)}
+                    className="hover:text-foreground text-muted-foreground absolute top-2 right-2 font-mono text-xs opacity-0 transition-all group-hover:opacity-100"
+                    aria-label="Copy command"
+                  >
+                    {copied === cmd.id ? 'Copied' : 'Copy'}
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Next Step */}
+          <div className="border-l-2 pl-6 md:pl-8">
+            <p className="text-muted-foreground flex items-center gap-2 text-sm">
+              <ArrowRight className="h-4 w-4" />
+              <span>Open http://localhost:3000 to see your application</span>
+            </p>
+          </div>
+        </div>
       </main>
+
+      {/* Footer */}
+      <footer className="text-muted-foreground mt-32 pb-12 text-center font-mono text-xs">
+        Production-ready Next.js starter
+      </footer>
     </div>
   );
 }
