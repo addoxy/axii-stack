@@ -1,5 +1,5 @@
 import { Providers } from '@/components/providers';
-import { env } from '@/config/env/server';
+import { env } from '@/lib/config/env/server';
 import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 import type { Metadata } from 'next';

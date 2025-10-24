@@ -1,4 +1,4 @@
-import { env } from '@/config/env/client';
+import { env } from '@/lib/config/env/client';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { requestId } from 'hono/request-id';

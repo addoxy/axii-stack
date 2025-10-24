@@ -70,17 +70,17 @@ export default function Home() {
             {stack.map((item, index) => (
               <div
                 key={index}
-                className="border-border group hover:bg-muted/30 flex items-baseline justify-between border-b px-4 py-4 transition-colors md:px-6 md:py-5"
+                className="border-border group hover:bg-muted/30 flex items-baseline justify-between gap-2 border-b px-4 py-4 transition-colors md:px-6 md:py-5"
               >
                 <div className="flex items-baseline gap-3 md:gap-4">
                   <span className="text-muted-foreground font-mono text-xs">
                     {String(index + 1).padStart(2, '0')}
                   </span>
-                  <span className="text-foreground font-medium">
+                  <span className="text-foreground text-left font-medium">
                     {item.name}
                   </span>
                 </div>
-                <span className="text-muted-foreground text-sm">
+                <span className="text-muted-foreground text-right text-sm">
                   {item.detail}
                 </span>
               </div>

@@ -1,4 +1,4 @@
-import { env } from '@/config/env/client';
+import { env } from '@/lib/config/env/client';
 import { hc } from 'hono/client';
 import { AppType } from '.';
 

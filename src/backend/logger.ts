@@ -1,4 +1,4 @@
-import { env } from '@/config/env/server';
+import { env } from '@/lib/config/env/server';
 import { createMiddleware } from 'hono/factory';
 import pino from 'pino';
 import { v4 as uuidv4 } from 'uuid';

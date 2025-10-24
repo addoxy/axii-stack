@@ -1,5 +1,5 @@
-import { env as clientEnv } from '@/config/env/client';
-import { env as serverEnv } from '@/config/env/server';
+import { env as clientEnv } from '@/lib/config/env/client';
+import { env as serverEnv } from '@/lib/config/env/server';
 import { PrismaClient } from '@prisma/client';
 import { betterAuth } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';

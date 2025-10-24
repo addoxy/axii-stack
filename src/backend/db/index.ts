@@ -1,4 +1,4 @@
-import { env } from '@/config/env/server';
+import { env } from '@/lib/config/env/server';
 import { PrismaClient } from '@prisma/client';
 
 const globalForPrisma = globalThis as unknown as {

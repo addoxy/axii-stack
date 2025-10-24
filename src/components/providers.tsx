@@ -12,16 +12,14 @@ interface ProviderProps {
 
 export const Providers = ({ children }: ProviderProps) => {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
-        {children}
-      </ThemeProvider>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
       <Toaster />
-    </QueryClientProvider>
+    </ThemeProvider>
   );
 };
