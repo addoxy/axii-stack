@@ -3,10 +3,9 @@
 import { GoogleIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
-import { ThemeToggler } from '@/components/ui/theme-toggler';
 import { signIn } from '@/lib/auth';
 import { signInRedirect } from '@/lib/config/redirects.config';
-import { ArrowLeft, Github } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 import { toast } from 'sonner';
@@ -35,32 +34,9 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="mx-auto min-h-screen max-w-4xl px-6 py-12 md:px-12 md:py-20">
-      {/* Header */}
-      <header className="flex items-start justify-between">
-        <div>
-          <h1 className="text-foreground text-2xl font-light tracking-tight">
-            Axii Stack
-          </h1>
-          <div className="text-muted-foreground mt-1 font-mono text-sm">
-            v1.0.0
-          </div>
-        </div>
-        <div className="flex items-center gap-4">
-          <a
-            href="https://github.com/addoxy/axii-stack"
-            target="_blank"
-            className="border-border hover:border-foreground hover:text-foreground text-muted-foreground inline-flex items-center gap-1.5 border-b pb-0.5 text-sm transition-colors"
-          >
-            <Github className="h-3.5 w-3.5" />
-            <span>GitHub</span>
-          </a>
-          <ThemeToggler />
-        </div>
-      </header>
-
+    <div className="mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-center px-6 py-12 md:px-12 md:py-20">
       {/* Main Content */}
-      <main className="mt-20 md:mt-32">
+      <main className="w-full">
         <div className="mx-auto max-w-md">
           {/* Back Link */}
           <Link
@@ -86,7 +62,7 @@ export default function SignInPage() {
                 size="lg"
                 variant="outline"
                 onClick={handleGoogleSignIn}
-                className="w-full"
+                className="w-full rounded-none"
                 disabled={isPending}
               >
                 {isPending && <Spinner />}
@@ -97,11 +73,6 @@ export default function SignInPage() {
           </div>
         </div>
       </main>
-
-      {/* Footer */}
-      <footer className="text-muted-foreground mt-32 pb-12 text-center font-mono text-xs">
-        Production-ready Next.js starter
-      </footer>
     </div>
   );
 }

@@ -88,6 +88,38 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Demo Pages */}
+        <div className="mt-20 space-y-8 md:mt-32">
+          <h2 className="text-foreground border-border border-l pl-6 text-lg font-medium md:pl-8">
+            Demo Pages
+          </h2>
+
+          <div className="flex flex-col gap-3">
+            <a
+              href="/sign-in"
+              className="border-border hover:border-foreground hover:bg-card group inline-flex items-center gap-3 border px-6 py-3 transition-all"
+            >
+              <span className="text-muted-foreground font-mono text-xs">
+                /sign-in
+              </span>
+              <span className="text-foreground text-sm font-medium">
+                Authentication Flow
+              </span>
+            </a>
+            <a
+              href="/not-found-demo"
+              className="border-border hover:border-foreground hover:bg-card group inline-flex items-center gap-3 border px-6 py-3 transition-all"
+            >
+              <span className="text-muted-foreground font-mono text-xs">
+                /404
+              </span>
+              <span className="text-foreground text-sm font-medium">
+                Not Found Page
+              </span>
+            </a>
+          </div>
+        </div>
+
         {/* Getting Started */}
         <div className="mt-20 space-y-8 md:mt-32">
           <h2 className="text-foreground border-border border-l pl-6 text-lg font-medium md:pl-8">

@@ -2,7 +2,6 @@
 
 import { Home, Search } from 'lucide-react';
 import Link from 'next/link';
-import { AxiiStackHeader } from './page';
 
 export default function NotFound() {
   const commonRoutes = [
@@ -12,9 +11,6 @@ export default function NotFound() {
 
   return (
     <div className="mx-auto min-h-screen max-w-4xl px-6 py-12 md:px-12 md:py-20">
-      {/* Header */}
-      <AxiiStackHeader />
-
       {/* Main Content */}
       <main className="mt-20 md:mt-32">
         {/* 404 Message */}
@@ -34,11 +30,11 @@ export default function NotFound() {
 
         {/* Error Code */}
         <div className="mt-12">
-          <div className="text-muted-foreground mb-3 font-mono text-xs">
+          <div className="text-muted-foreground mb-3 font-mono text-xs tracking-wider uppercase">
             Error code
           </div>
-          <div className="border-border bg-card border px-4 py-4">
-            <code className="text-foreground font-mono text-sm">404</code>
+          <div className="bg-muted/30 border-border border-l-2 px-4 py-3">
+            <code className="text-foreground/70 font-mono text-sm">404</code>
           </div>
         </div>
 
@@ -78,11 +74,6 @@ export default function NotFound() {
           </Link>
         </div>
       </main>
-
-      {/* Footer */}
-      <footer className="text-muted-foreground mt-32 pb-12 text-center font-mono text-xs">
-        Production-ready Next.js starter
-      </footer>
     </div>
   );
 }

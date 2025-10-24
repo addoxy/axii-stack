@@ -3,7 +3,6 @@
 import { AlertCircle, Home, RefreshCw } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect } from 'react';
-import { AxiiStackHeader } from './page';
 
 export default function Error({
   error,
@@ -18,9 +17,6 @@ export default function Error({
 
   return (
     <div className="mx-auto min-h-screen max-w-4xl px-6 py-12 md:px-12 md:py-20">
-      {/* Header */}
-      <AxiiStackHeader />
-
       {/* Main Content */}
       <main className="mt-20 md:mt-32">
         {/* Error Message */}
@@ -40,16 +36,16 @@ export default function Error({
         {/* Error Details */}
         {error.message && (
           <div className="mt-12">
-            <div className="text-muted-foreground mb-3 font-mono text-xs">
+            <div className="text-muted-foreground mb-3 font-mono text-xs tracking-wider uppercase">
               Error details
             </div>
-            <div className="border-border bg-card border">
-              <code className="text-foreground/80 block overflow-x-auto px-4 py-4 font-mono text-sm">
+            <div className="bg-muted/30 border-border border-l-2">
+              <code className="text-foreground/70 block overflow-x-auto px-4 py-3 font-mono text-sm">
                 {error.message}
               </code>
               {error.digest && (
                 <div className="border-border border-t px-4 py-2">
-                  <span className="text-muted-foreground font-mono text-xs">
+                  <span className="text-muted-foreground/70 font-mono text-xs">
                     Digest: {error.digest}
                   </span>
                 </div>
@@ -80,11 +76,6 @@ export default function Error({
           </Link>
         </div>
       </main>
-
-      {/* Footer */}
-      <footer className="text-muted-foreground mt-32 pb-12 text-center font-mono text-xs">
-        Production-ready Next.js starter
-      </footer>
     </div>
   );
 }
