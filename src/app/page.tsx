@@ -1,7 +1,7 @@
 'use client';
 
 import { ThemeToggler } from '@/components/ui/theme-toggler';
-import { ArrowRight, Github } from 'lucide-react';
+import { ArrowRight, GithubIcon } from 'lucide-react';
 import { useState } from 'react';
 
 export default function Home() {
@@ -52,7 +52,27 @@ export default function Home() {
   return (
     <div className="mx-auto min-h-screen max-w-4xl px-6 py-12 md:px-12 md:py-20">
       {/* Header */}
-      <AxiiStackHeader />
+      <header className="flex items-start justify-between">
+        <div>
+          <h1 className="text-foreground text-2xl font-light tracking-tight">
+            Axii Stack
+          </h1>
+          <div className="text-muted-foreground mt-1 font-mono text-sm">
+            v1.0.0
+          </div>
+        </div>
+        <div className="flex items-center gap-4">
+          <a
+            href="https://github.com/addoxy/axii-stack"
+            target="_blank"
+            className="border-border hover:border-foreground hover:text-foreground text-muted-foreground inline-flex items-center gap-1.5 border-b pb-0.5 text-sm transition-colors"
+          >
+            <GithubIcon className="h-3.5 w-3.5" />
+            <span>GitHub</span>
+          </a>
+          <ThemeToggler />
+        </div>
+      </header>
 
       {/* Main Content */}
       <main className="mt-20 md:mt-32">
@@ -95,28 +115,29 @@ export default function Home() {
           </h2>
 
           <div className="flex flex-col gap-3">
-            <a
-              href="/sign-in"
-              className="border-border hover:border-foreground hover:bg-card group inline-flex items-center gap-3 border px-6 py-3 transition-all"
-            >
-              <span className="text-muted-foreground font-mono text-xs">
-                /sign-in
-              </span>
-              <span className="text-foreground text-sm font-medium">
-                Authentication Flow
-              </span>
-            </a>
-            <a
-              href="/not-found-demo"
-              className="border-border hover:border-foreground hover:bg-card group inline-flex items-center gap-3 border px-6 py-3 transition-all"
-            >
-              <span className="text-muted-foreground font-mono text-xs">
-                /404
-              </span>
-              <span className="text-foreground text-sm font-medium">
-                Not Found Page
-              </span>
-            </a>
+            {[
+              {
+                href: '/sign-in',
+                label: 'Authentication Flow',
+              },
+              {
+                href: '/not-found',
+                label: 'Not Found Page',
+              },
+            ].map((route) => (
+              <a
+                key={route.href}
+                href={route.href}
+                className="border-border hover:border-foreground dark:hover:border-border hover:bg-card group inline-flex items-center gap-3 border px-6 py-3 transition-all"
+              >
+                <span className="text-muted-foreground font-mono text-xs">
+                  {route.href}
+                </span>
+                <span className="text-foreground text-sm font-medium">
+                  {route.label}
+                </span>
+              </a>
+            ))}
           </div>
         </div>
 
@@ -165,29 +186,3 @@ export default function Home() {
     </div>
   );
 }
-
-export const AxiiStackHeader = () => {
-  return (
-    <header className="flex items-start justify-between">
-      <div>
-        <h1 className="text-foreground text-2xl font-light tracking-tight">
-          Axii Stack
-        </h1>
-        <div className="text-muted-foreground mt-1 font-mono text-sm">
-          v1.0.0
-        </div>
-      </div>
-      <div className="flex items-center gap-4">
-        <a
-          href="https://github.com/addoxy/axii-stack"
-          target="_blank"
-          className="border-border hover:border-foreground hover:text-foreground text-muted-foreground inline-flex items-center gap-1.5 border-b pb-0.5 text-sm transition-colors"
-        >
-          <Github className="h-3.5 w-3.5" />
-          <span>GitHub</span>
-        </a>
-        <ThemeToggler />
-      </div>
-    </header>
-  );
-};

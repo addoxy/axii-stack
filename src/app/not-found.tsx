@@ -48,7 +48,7 @@ export default function NotFound() {
               <Link
                 key={index}
                 href={route.path}
-                className="border-border hover:border-foreground hover:bg-card group inline-flex items-center gap-3 border px-6 py-3 transition-all"
+                className="border-border hover:border-foreground dark:hover:border-border hover:bg-card group inline-flex items-center gap-3 border px-6 py-3 transition-all"
               >
                 <span className="text-muted-foreground font-mono text-xs">
                   {route.path}

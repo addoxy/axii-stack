@@ -58,7 +58,7 @@ export default function Error({
         <div className="mt-12 flex flex-col gap-4 md:flex-row">
           <button
             onClick={reset}
-            className="border-border hover:border-foreground hover:bg-card group inline-flex items-center gap-2 border px-6 py-3 transition-all"
+            className="border-border hover:border-foreground dark:hover:border-border hover:bg-card group inline-flex items-center gap-2 border px-6 py-3 transition-all"
           >
             <RefreshCw className="text-muted-foreground group-hover:text-foreground h-4 w-4 transition-colors" />
             <span className="text-foreground text-sm font-medium">
