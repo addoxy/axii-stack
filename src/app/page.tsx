@@ -49,6 +49,21 @@ export default function Home() {
     },
   ];
 
+  const demoRoutes = [
+    {
+      href: '/sign-in',
+      label: 'Sign In Page',
+    },
+    {
+      href: '/sign-up',
+      label: 'Sign Up Page',
+    },
+    {
+      href: '/not-found',
+      label: 'Not Found Page',
+    },
+  ];
+
   return (
     <div className="mx-auto min-h-screen max-w-4xl px-6 py-12 md:px-12 md:py-20">
       {/* Header */}
@@ -115,20 +130,7 @@ export default function Home() {
           </h2>
 
           <div className="flex flex-col gap-3">
-            {[
-              {
-                href: '/sign-in',
-                label: 'Sign In Page',
-              },
-              {
-                href: '/sign-up',
-                label: 'Sign Up Page',
-              },
-              {
-                href: '/not-found',
-                label: 'Not Found Page',
-              },
-            ].map((route) => (
+            {demoRoutes.map((route) => (
               <a
                 key={route.href}
                 href={route.href}

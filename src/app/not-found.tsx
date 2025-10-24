@@ -7,6 +7,7 @@ export default function NotFound() {
   const commonRoutes = [
     { path: '/', label: 'Home' },
     { path: '/sign-in', label: 'Sign In' },
+    { path: '/sign-up', label: 'Sign Up' },
   ];
 
   return (
