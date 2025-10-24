@@ -118,7 +118,11 @@ export default function Home() {
             {[
               {
                 href: '/sign-in',
-                label: 'Authentication Flow',
+                label: 'Sign In Page',
+              },
+              {
+                href: '/sign-up',
+                label: 'Sign Up Page',
               },
               {
                 href: '/not-found',
