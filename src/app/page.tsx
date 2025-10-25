@@ -28,14 +28,9 @@ export default function Home() {
 
   const commands = [
     {
-      id: 'clone',
-      label: 'Clone repository',
-      command: 'git clone https://github.com/addoxy/axii-stack.git',
-    },
-    {
       id: 'install',
       label: 'Install dependencies',
-      command: 'cd axii-stack && pnpm install',
+      command: 'pnpm install',
     },
     {
       id: 'env',
@@ -43,9 +38,14 @@ export default function Home() {
       command: 'cp .env.example .env.local',
     },
     {
+      id: 'db',
+      label: 'Setup database',
+      command: 'pnpm db:start && pnpm db:migrate',
+    },
+    {
       id: 'dev',
       label: 'Start development',
-      command: 'pnpm db:start && pnpm db:migrate && pnpm dev',
+      command: 'pnpm dev',
     },
   ];
 
