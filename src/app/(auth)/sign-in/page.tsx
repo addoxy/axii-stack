@@ -1,6 +1,7 @@
 'use client';
 
 import { SocialSignIn } from '@/app/(auth)/_components/social-sign-in';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
   Field,
@@ -10,7 +11,7 @@ import {
 } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { Spinner } from '@/components/ui/spinner';
-import { signIn } from '@/lib/auth';
+import { isLastUsedLoginMethod, signIn } from '@/lib/auth';
 import { signInRedirect } from '@/lib/config/redirects.config';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
@@ -28,6 +29,7 @@ type SignInFormData = z.infer<typeof signInSchema>;
 
 export default function SignInPage() {
   const [isPending, setIsPending] = useState(false);
+  const isLastUsed = isLastUsedLoginMethod('email');
 
   const {
     register,
@@ -75,7 +77,17 @@ export default function SignInPage() {
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <Field data-invalid={!!errors.email}>
-          <FieldLabel htmlFor="email">Email</FieldLabel>
+          <div className="flex items-center justify-between gap-2">
+            <FieldLabel htmlFor="email">Email</FieldLabel>
+            {isLastUsed && (
+              <Badge
+                variant="secondary"
+                className="border-primary/10 rounded-none border"
+              >
+                Last used
+              </Badge>
+            )}
+          </div>
           <FieldContent>
             <Input
               id="email"

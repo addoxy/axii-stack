@@ -1,15 +1,17 @@
 'use client';
 
 import { GoogleIcon } from '@/components/icons';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
-import { signIn } from '@/lib/auth';
+import { isLastUsedLoginMethod, signIn } from '@/lib/auth';
 import { signInRedirect } from '@/lib/config/redirects.config';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
 export function SocialSignIn() {
   const [isPending, setIsPending] = useState(false);
+  const isLastUsed = isLastUsedLoginMethod('google');
 
   const handleSocialSignIn = async (provider: string) => {
     try {
@@ -47,9 +49,17 @@ export function SocialSignIn() {
         size="lg"
         variant="outline"
         onClick={() => handleSocialSignIn('google')}
-        className="w-full rounded-none"
+        className="relative w-full rounded-none"
         disabled={isPending}
       >
+        {isLastUsed && (
+          <Badge
+            variant="secondary"
+            className="border-primary/10 absolute -top-3 -right-2 rounded-none border"
+          >
+            Last used
+          </Badge>
+        )}
         {isPending && <Spinner />}
         <GoogleIcon />
         Continue with Google
