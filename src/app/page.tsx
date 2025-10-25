@@ -13,13 +13,51 @@ export default function Home() {
     setTimeout(() => setCopied(null), 2000);
   };
 
+  const features = [
+    {
+      name: 'End-to-End Type Safety',
+      detail: 'Full type inference from database to UI',
+    },
+    {
+      name: 'Built-in Authentication',
+      detail: 'Email, OAuth & session management',
+    },
+    {
+      name: 'Type-safe API',
+      detail: 'Auto-generated typed API client',
+    },
+    {
+      name: 'Database Ready',
+      detail: 'Prisma ORM with type generation',
+    },
+    {
+      name: 'Modern UI Components',
+      detail: 'shadcn/ui with Tailwind v4 & dark mode',
+    },
+    {
+      name: 'Production Ready',
+      detail: 'Docker, env validation & logging',
+    },
+    {
+      name: 'Developer Experience',
+      detail: 'Fast compiler with quality checks',
+    },
+    {
+      name: 'AI-Assisted Development',
+      detail: 'Built-in context for AI collaboration',
+    },
+  ];
+
   const stack = [
     { name: 'Next.js 15', detail: 'React 19 with Turbopack' },
     { name: 'Better Auth', detail: 'Full-featured auth library' },
     { name: 'Prisma', detail: 'Type-safe PostgreSQL ORM' },
     { name: 'Hono', detail: 'Lightweight type-safe API' },
     { name: 'TanStack Query', detail: 'Async state management' },
-    { name: 'Tailwind v4 + shadcn', detail: 'Radix with dark mode' },
+    {
+      name: 'Tailwind v4 + shadcn',
+      detail: 'Modern UI components with dark mode',
+    },
     { name: 'Zod + T3 Env', detail: 'Runtime validation library' },
     { name: 'Pino', detail: 'Structured logging system' },
     { name: 'ESLint + Prettier', detail: 'Linting and formatting' },
@@ -99,10 +137,14 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Stack List */}
-        <div className="mt-16 space-y-0 md:mt-24">
+        {/* Features */}
+        <div className="mt-16 space-y-8 md:mt-24">
+          <h2 className="text-foreground border-border border-l pl-6 text-lg font-medium md:pl-8">
+            Features
+          </h2>
+
           <div className="border-border border-t">
-            {stack.map((item, index) => (
+            {features.map((item, index) => (
               <div
                 key={index}
                 className="border-border group hover:bg-muted/30 flex items-baseline justify-between gap-2 border-b px-4 py-4 transition-colors md:px-6 md:py-5"
@@ -116,6 +158,34 @@ export default function Home() {
                   </span>
                 </div>
                 <span className="text-muted-foreground text-right text-sm">
+                  {item.detail}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Stack List */}
+        <div className="mt-16 space-y-8 md:mt-24">
+          <h2 className="text-foreground border-border border-l pl-6 text-lg font-medium md:pl-8">
+            Tech Stack
+          </h2>
+
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+            {stack.map((item, index) => (
+              <div
+                key={index}
+                className="border-border hover:border-foreground/20 dark:hover:border-foreground/20 hover:bg-muted/20 group border px-5 py-4 transition-all"
+              >
+                <div className="mb-1.5 flex items-baseline justify-between gap-2">
+                  <span className="text-foreground text-sm font-medium">
+                    {item.name}
+                  </span>
+                  <span className="text-muted-foreground font-mono text-xs opacity-60">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                </div>
+                <span className="text-muted-foreground block text-xs leading-relaxed">
                   {item.detail}
                 </span>
               </div>
