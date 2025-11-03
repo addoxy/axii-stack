@@ -116,7 +116,7 @@ export default function Home() {
         </div>
         <div className="flex items-center gap-4">
           <a
-            href="https://github.com/addoxy/axii-stack"
+            href="https://github.com/axiidotsh/axii-stack"
             target="_blank"
             className="border-border hover:border-foreground hover:text-foreground text-muted-foreground inline-flex items-center gap-1.5 border-b pb-0.5 text-sm transition-colors"
           >
